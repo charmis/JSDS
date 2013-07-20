@@ -12,17 +12,14 @@ Charmis.Tree = function () {
     var rootNode;
 
     function InsertNode(rNode, nodeValue) {
-        if (nodeValue < rNode.data) 
-        {
+        if (nodeValue < rNode.data) {
             if (rNode.left === null) {
                 rNode.left = Charmis.Treenode();
                 rNode.left.data = nodeValue;
             } else {
                 InsertNode(rNode.left, nodeValue);
             }
-        } 
-        else 
-        {
+        } else {
             if (rNode.right === null) {
                 rNode.right = Charmis.Treenode();
                 rNode.right.data = nodeValue;
@@ -43,33 +40,38 @@ Charmis.Tree = function () {
         }
     }
 
-    return {
-        insertNode: function () {
-            
-            if (rootNode === undefined) {
-            
-                rootNode = Charmis.Treenode();
-                rootNode.data = arguments[0];
-            } else {    
-            
-                InsertNode(rootNode, arguments[0]);
-            }           
-        },
+    var insertTreeNode = function () {
 
-        traverse: function () {
-            console.log('Root Node - - - - - - - ');
-            console.log(rootNode.data);
-            
-            console.log('Left tree of Root Node - - - - - - - ');
-            if (rootNode.left !== null) {
-                Traverse(rootNode.left);
-            }
-            
-            console.log('Right tree of Root Node - - - - - - - ');
-            if (rootNode.right !== null) {
-                Traverse(rootNode.right);
-            }
+        if (rootNode === undefined) {
+
+            rootNode = Charmis.Treenode();
+            rootNode.data = arguments[0];
+        } else {
+
+            InsertNode(rootNode, arguments[0]);
         }
+    };
+
+    var inOrderTraverse = function () {
+
+
+        console.log('Left tree of Root Node - - - - - - - ');
+        if (rootNode.left !== null) {
+            Traverse(rootNode.left);
+        }
+        console.log('Root Node - - - - - - - ');
+        console.log(rootNode.data);
+
+        console.log('Right tree of Root Node - - - - - - - ');
+        if (rootNode.right !== null) {
+            Traverse(rootNode.right);
+        }
+    };
+
+    return {
+        insertNode: insertTreeNode,
+
+        inorderTraverse: inOrderTraverse
     };
 };
 
@@ -82,4 +84,4 @@ bTree.insertNode(8);
 bTree.insertNode(11);
 bTree.insertNode(1);
 bTree.insertNode(2);
-bTree.traverse();
+bTree.inorderTraverse();
