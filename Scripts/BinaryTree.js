@@ -1,6 +1,6 @@
-var Charmis = {}; //namespace
+var JSDS = {}; //namespace
 
-Charmis.Treenode = function () {
+JSDS.Treenode = function () {
     return {
         data: '',
         left: null,
@@ -8,20 +8,20 @@ Charmis.Treenode = function () {
     };
 };
 
-Charmis.Tree = function () {
+JSDS.Tree = function () {
     var rootNode;
 
     function InsertNode(rNode, nodeValue) {
         if (nodeValue < rNode.data) {
             if (rNode.left === null) {
-                rNode.left = Charmis.Treenode();
+                rNode.left = JSDS.Treenode();
                 rNode.left.data = nodeValue;
             } else {
                 InsertNode(rNode.left, nodeValue);
             }
         } else {
             if (rNode.right === null) {
-                rNode.right = Charmis.Treenode();
+                rNode.right = JSDS.Treenode();
                 rNode.right.data = nodeValue;
             } else {
                 InsertNode(rNode.right, nodeValue);
@@ -44,7 +44,7 @@ Charmis.Tree = function () {
 
         if (rootNode === undefined) {
 
-            rootNode = Charmis.Treenode();
+            rootNode = JSDS.Treenode();
             rootNode.data = arguments[0];
         } else {
 
@@ -75,7 +75,7 @@ Charmis.Tree = function () {
     };
 };
 
-var bTree = Charmis.Tree();
+var bTree = JSDS.Tree();
 bTree.insertNode(10);
 bTree.insertNode(30);
 bTree.insertNode(29);
